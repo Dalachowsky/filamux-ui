@@ -19,7 +19,15 @@
      <property name="title">
       <string>NUMER_SZPULI</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3"/>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="changeButton">
+        <property name="text">
+         <string>Zmień</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>

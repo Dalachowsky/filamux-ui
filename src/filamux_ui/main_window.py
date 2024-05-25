@@ -14,16 +14,19 @@ class MainWindow(QMainWindow):
         # Initialize fields
         self._client = FilamuxClient()
         self._model = FilamuxModel()
-
         # Setup UI
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.spoolWidget = SpoolWidget(1)
+        self.spoolWidget1 = SpoolWidget(1)
+        self.spoolWidget2 = SpoolWidget(2)
         self.dialogConnect = DialogConnect(self._client)
-        self.ui.root.layout().addChildWidget(self.spoolWidget)
+        self.ui.root.layout().addWidget(self.spoolWidget1, 1, 1)
+        self.ui.root.layout().addWidget(self.spoolWidget2, 1, 2)
 
         # Connect signals
         self._model.spoolChanged.connect(self.onSpoolChanged)
+        self.spoolWidget1.szpulRequest.connect(self._client.sendSetActiveSpool)
+        self.spoolWidget2.szpulRequest.connect(self._client.sendSetActiveSpool)
 
         self._model.currentSpool = 0
         self._model.currentSpool = 1
