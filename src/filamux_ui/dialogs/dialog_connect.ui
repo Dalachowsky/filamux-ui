@@ -26,23 +26,20 @@
       <property name="horizontalSpacing">
        <number>12</number>
       </property>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="baudrateSelector"/>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="portLabel">
+      <item row="0" column="0">
+       <widget class="QLabel" name="baudrateLabel">
         <property name="text">
-         <string>Port</string>
+         <string>Baudrate</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="baudrateLabel">
+      <item row="1" column="0">
+       <widget class="QLabel" name="portLabel">
         <property name="text">
-         <string>Baudrate</string>
+         <string>Port</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -55,6 +52,9 @@
          <string>COM3</string>
         </property>
        </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="baudrateSelector"/>
       </item>
      </layout>
     </widget>

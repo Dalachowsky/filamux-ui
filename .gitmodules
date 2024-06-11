@@ -1,0 +1,3 @@
+[submodule "filamux-proto"] 
+  path = filamux-proto 
+  url = https://github.com/Dalachowsky/filamux-proto.git
