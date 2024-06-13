@@ -22,7 +22,8 @@ class MainWindow(QMainWindow):
         self.dialogConnect = DialogConnect(self._client)
         self.ui.root.layout().addWidget(self.spoolWidget1, 1, 1)
         self.ui.root.layout().addWidget(self.spoolWidget2, 1, 2)
-
+        
+        
         # Connect signals
         self._model.spoolChanged.connect(self.onSpoolChanged)
         self.spoolWidget1.szpulRequest.connect(self._client.sendSetActiveSpool)

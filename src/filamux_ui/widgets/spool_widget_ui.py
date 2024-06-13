@@ -78,7 +78,7 @@ class Ui_SpoolWidget(object):
         self.frame.setTitle(QCoreApplication.translate("SpoolWidget", u"NUMER_SZPULI", None))
         self.changeButton.setText(QCoreApplication.translate("SpoolWidget", u"Change on spool", None))
         self.lenghtLabel.setText(QCoreApplication.translate("SpoolWidget", u"TextLabel", None))
-        self.label.setText(QCoreApplication.translate("SpoolWidget", u"Loaded Spool:", None))
+        self.label.setText(QCoreApplication.translate("SpoolWidget", u"TextLabel", None))
         self.addSpoolButton.setText(QCoreApplication.translate("SpoolWidget", u"ADD Spool", None))
         self.producerLabel.setText(QCoreApplication.translate("SpoolWidget", u"TextLabel", None))
         self.colorLabel.setText(QCoreApplication.translate("SpoolWidget", u"TextLabel", None))

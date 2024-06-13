@@ -22,7 +22,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(400, 300)
+        Dialog.resize(400, 285)
         font = QFont()
         font.setPointSize(14)
         Dialog.setFont(font)
@@ -30,7 +30,7 @@ class Ui_Dialog(object):
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setGeometry(QRect(30, 240, 341, 32))
         self.buttonBox.setOrientation(Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok|QDialogButtonBox.Reset)
         self.buttonBox.setCenterButtons(False)
         self.label2 = QLabel(Dialog)
         self.label2.setObjectName(u"label2")

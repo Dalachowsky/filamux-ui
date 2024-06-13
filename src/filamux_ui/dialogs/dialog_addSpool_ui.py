@@ -30,7 +30,7 @@ class Ui_Dialog(object):
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setGeometry(QRect(30, 240, 341, 32))
         self.buttonBox.setOrientation(Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok|QDialogButtonBox.Reset)
         self.buttonBox.setCenterButtons(False)
         self.label2 = QLabel(Dialog)
         self.label2.setObjectName(u"label2")
