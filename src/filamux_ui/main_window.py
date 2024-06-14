@@ -26,8 +26,8 @@ class MainWindow(QMainWindow):
         
         # Connect signals
         self._model.spoolChanged.connect(self.onSpoolChanged)
-        self.spoolWidget1.szpulRequest.connect(self._client.sendSetActiveSpool)
-        self.spoolWidget2.szpulRequest.connect(self._client.sendSetActiveSpool)
+        self.spoolWidget1.szpulRequest.connect(self._client.sendSetTargetSpool)
+        self.spoolWidget2.szpulRequest.connect(self._client.sendSetTargetSpool)
 
         self._model.currentSpool = 0
         self._model.currentSpool = 1
