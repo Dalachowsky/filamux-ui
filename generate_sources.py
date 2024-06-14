@@ -13,7 +13,7 @@ for subdir, dirs, files in os.walk(os.fsencode(PY_SRC_DIR)):
             outputFileName = fileName.replace(".ui", ".py")
             outputFileName = "ui_" + outputFileName
             print(f"Generating: {subdirPath}/{outputFileName}")
-            ret = os.system(f"pyside6-uic {subdirPath}/{fileName} -o {subdirPath}/{outputFileName}")
+            ret = os.system(f"pyside6-uic \"{subdirPath}/{fileName}\" -o \"{subdirPath}/{outputFileName}\"")
             if ret != 0:
                 exit(1)
 
