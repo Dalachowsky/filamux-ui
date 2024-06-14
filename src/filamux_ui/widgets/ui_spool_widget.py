@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'spool_widget.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.7.1
+## Created by: Qt User Interface Compiler version 6.7.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -16,56 +16,56 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGridLayout, QGroupBox, QLabel,
-    QPushButton, QSizePolicy, QWidget)
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
+    QWidget)
 
 class Ui_SpoolWidget(object):
     def setupUi(self, SpoolWidget):
         if not SpoolWidget.objectName():
             SpoolWidget.setObjectName(u"SpoolWidget")
-        SpoolWidget.resize(417, 351)
+        SpoolWidget.resize(417, 672)
         self.gridLayout = QGridLayout(SpoolWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.frame = QGroupBox(SpoolWidget)
         self.frame.setObjectName(u"frame")
-        self.gridLayout_3 = QGridLayout(self.frame)
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.changeButton = QPushButton(self.frame)
-        self.changeButton.setObjectName(u"changeButton")
+        self.verticalLayout = QVBoxLayout(self.frame)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.addSpoolButton = QPushButton(self.frame)
+        self.addSpoolButton.setObjectName(u"addSpoolButton")
 
-        self.gridLayout_3.addWidget(self.changeButton, 2, 0, 1, 1)
-
-        self.lenghtLabel = QLabel(self.frame)
-        self.lenghtLabel.setObjectName(u"lenghtLabel")
-
-        self.gridLayout_3.addWidget(self.lenghtLabel, 7, 0, 1, 1)
+        self.verticalLayout.addWidget(self.addSpoolButton)
 
         self.label = QLabel(self.frame)
         self.label.setObjectName(u"label")
 
-        self.gridLayout_3.addWidget(self.label, 4, 0, 1, 1)
-
-        self.addSpoolButton = QPushButton(self.frame)
-        self.addSpoolButton.setObjectName(u"addSpoolButton")
-
-        self.gridLayout_3.addWidget(self.addSpoolButton, 3, 0, 1, 1)
+        self.verticalLayout.addWidget(self.label)
 
         self.producerLabel = QLabel(self.frame)
         self.producerLabel.setObjectName(u"producerLabel")
 
-        self.gridLayout_3.addWidget(self.producerLabel, 5, 0, 1, 1)
+        self.verticalLayout.addWidget(self.producerLabel)
 
         self.colorLabel = QLabel(self.frame)
         self.colorLabel.setObjectName(u"colorLabel")
 
-        self.gridLayout_3.addWidget(self.colorLabel, 6, 0, 1, 1)
+        self.verticalLayout.addWidget(self.colorLabel)
+
+        self.lenghtLabel = QLabel(self.frame)
+        self.lenghtLabel.setObjectName(u"lenghtLabel")
+
+        self.verticalLayout.addWidget(self.lenghtLabel)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer)
+
+        self.changeButton = QPushButton(self.frame)
+        self.changeButton.setObjectName(u"changeButton")
+
+        self.verticalLayout.addWidget(self.changeButton)
 
 
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
-
-        self.label_5 = QLabel(SpoolWidget)
-        self.label_5.setObjectName(u"label_5")
-
-        self.gridLayout.addWidget(self.label_5, 1, 0, 1, 1)
 
 
         self.retranslateUi(SpoolWidget)
@@ -76,12 +76,11 @@ class Ui_SpoolWidget(object):
     def retranslateUi(self, SpoolWidget):
         SpoolWidget.setWindowTitle(QCoreApplication.translate("SpoolWidget", u"Form", None))
         self.frame.setTitle(QCoreApplication.translate("SpoolWidget", u"NUMER_SZPULI", None))
-        self.changeButton.setText(QCoreApplication.translate("SpoolWidget", u"Change on spool", None))
-        self.lenghtLabel.setText(QCoreApplication.translate("SpoolWidget", u"TextLabel", None))
-        self.label.setText(QCoreApplication.translate("SpoolWidget", u"TextLabel", None))
         self.addSpoolButton.setText(QCoreApplication.translate("SpoolWidget", u"ADD Spool", None))
+        self.label.setText(QCoreApplication.translate("SpoolWidget", u"Loaded Spool:", None))
         self.producerLabel.setText(QCoreApplication.translate("SpoolWidget", u"TextLabel", None))
         self.colorLabel.setText(QCoreApplication.translate("SpoolWidget", u"TextLabel", None))
-        self.label_5.setText(QCoreApplication.translate("SpoolWidget", u"TextLabel", None))
+        self.lenghtLabel.setText(QCoreApplication.translate("SpoolWidget", u"TextLabel", None))
+        self.changeButton.setText(QCoreApplication.translate("SpoolWidget", u"Aktywuj", None))
     # retranslateUi
 

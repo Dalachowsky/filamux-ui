@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>417</width>
-    <height>351</height>
+    <height>672</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,57 +19,63 @@
      <property name="title">
       <string>NUMER_SZPULI</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="2" column="0">
-       <widget class="QPushButton" name="changeButton">
-        <property name="text">
-         <string>Change on spool</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="lenghtLabel">
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Loaded Spool:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
        <widget class="QPushButton" name="addSpoolButton">
         <property name="text">
          <string>ADD Spool</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Loaded Spool:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLabel" name="producerLabel">
         <property name="text">
          <string>TextLabel</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="0">
+      <item>
        <widget class="QLabel" name="colorLabel">
         <property name="text">
          <string>TextLabel</string>
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QLabel" name="lenghtLabel">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="changeButton">
+        <property name="text">
+         <string>Aktywuj</string>
+        </property>
+       </widget>
+      </item>
      </layout>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
     </widget>
    </item>
   </layout>
