@@ -33,8 +33,18 @@ class DialogConnect(QDialog):
         self.ui.connectButton.setDisabled(state)
 
     @Slot()
+    def onConnect(self):
+        self._setConnecting(False)
+        self.close()
+
+    @Slot()
+    def onDisconnect(self):
+        self._setConnecting(False)
+        self.show()
+
+    @Slot()
     def _connectRequested(self):
         self._client.setBaudRate(self.ui.baudrateSelector.currentData)
         self._client.setPort(self.ui.portValue.text())
-        self._client.start()
         self._setConnecting(True)
+        self._client.start()

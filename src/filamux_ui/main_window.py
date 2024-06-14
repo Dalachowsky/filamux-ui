@@ -1,5 +1,5 @@
 
-from PySide6.QtWidgets import QMainWindow
+from PySide6.QtWidgets import QMainWindow, QDialog, QMessageBox
 from PySide6.QtCore import Slot
 from .ui_main_window import Ui_MainWindow
 from .widgets.spool_widget import SpoolWidget 
@@ -28,6 +28,9 @@ class MainWindow(QMainWindow):
         self._model.spoolChanged.connect(self.onSpoolChanged)
         self.spoolWidget1.szpulRequest.connect(self._client.sendSetTargetSpool)
         self.spoolWidget2.szpulRequest.connect(self._client.sendSetTargetSpool)
+        self._client.connected.connect(self.dialogConnect.onConnect)
+        self._client.disconnected.connect(self.dialogConnect.onDisconnect)
+        self._client.disconnected.connect(self.onDisconnect)
 
         self._model.currentSpool = 0
         self._model.currentSpool = 1
@@ -36,7 +39,16 @@ class MainWindow(QMainWindow):
     def onSpoolChanged(self, spool):
         print(f"Spool changed: {spool}")
 
+    @Slot(str)
+    def onDisconnect(self, reason: str):
+        #self.setDisabled(True)
+        self.dialogConnect.show()
+        dialog = QMessageBox()
+        dialog.setWindowTitle("Błąd komunikacji")
+        dialog.setIcon(QMessageBox.Icon.Critical)
+        dialog.setText(reason)
+        dialog.exec()
+
     def show(self):
         super().show()              # Call parent class show()
         self.dialogConnect.show()   # Display dialog for connection
-

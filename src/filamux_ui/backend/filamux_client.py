@@ -1,6 +1,6 @@
 
 from PySide6.QtSerialPort import QSerialPort
-from PySide6.QtCore import QIODevice, Slot, Signal
+from PySide6.QtCore import QObject, QIODevice, Slot, Signal
 from .protobuf import *
 from typing import *
 from crc import Calculator, Crc16
@@ -18,7 +18,7 @@ TYPE_FIELD_POS = 1
 LENGTH_FIELD_POS = 2
 DATA_FIELD_POS = 3
 
-class FilamuxClient:
+class FilamuxClient(QObject):
     """
     Signals:
         connected()
@@ -33,6 +33,7 @@ class FilamuxClient:
     disconnected = Signal(str)
 
     def __init__(self):
+        super().__init__()
         self._connected = False
         self._port = QSerialPort()
         self._port.setBaudRate(QSerialPort.BaudRate.Baud115200)
@@ -59,7 +60,12 @@ class FilamuxClient:
     def start(self):
         self._port.open(QIODevice.ReadWrite)
         if self.isConnected():
-            self._sendData
+            LOG.info("Connected")
+            self.connected.emit()
+        else:
+            msg = f"Nie połączono: {self._port.errorString()}"
+            LOG.error(msg)
+            self.disconnected.emit(msg)
 
     def process(self):
         pass
