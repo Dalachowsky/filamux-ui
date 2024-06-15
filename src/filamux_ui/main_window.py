@@ -4,6 +4,7 @@ from PySide6.QtCore import Slot
 from .ui_main_window import Ui_MainWindow
 from .widgets.spool_widget import SpoolWidget 
 from .widgets.status_widget import StatusWidget
+from .widgets.extruder_widget import ExtruderWidget
 from .dialogs.dialog_connect import DialogConnect
 from .backend.filamux_client import FilamuxClient
 from .backend.filamux_model import FilamuxModel
@@ -21,10 +22,12 @@ class MainWindow(QMainWindow):
         self.spoolWidget1 = SpoolWidget(1)
         self.spoolWidget2 = SpoolWidget(2)
         self.statusWidget = StatusWidget()
+        self.extruderWidget = ExtruderWidget()
         self.dialogConnect = DialogConnect(self._client)
-        self.ui.root.layout().addWidget(self.spoolWidget1, 1, 1)
-        self.ui.root.layout().addWidget(self.spoolWidget2, 1, 2)
+        self.ui.root.layout().addWidget(self.spoolWidget1, 1, 1, 2, 1)
+        self.ui.root.layout().addWidget(self.spoolWidget2, 1, 2, 2, 1)
         self.ui.root.layout().addWidget(self.statusWidget, 1, 3)
+        self.ui.root.layout().addWidget(self.extruderWidget, 2, 3)
         
         # Connect signals
         self._model.spoolChanged.connect(self.onSpoolChanged)
