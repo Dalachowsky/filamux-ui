@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QDialog
+from PySide6.QtWidgets import QWidget, QDialog, QMessageBox
 from PySide6.QtCore import Signal, Slot
 from .ui_spool_widget import Ui_SpoolWidget 
 from ..dialogs.dialog_addSpool import addSpool
@@ -7,7 +7,7 @@ from ..dialogs.dialog_addSpool import addSpool
 class SpoolWidget(QWidget):
 
     szpulRequest = Signal(int)
-    
+    spoolLengthChange = Signal(int, int)
     def __init__(self, index: int):
         super().__init__()
 
@@ -38,10 +38,23 @@ class SpoolWidget(QWidget):
 
     @Slot()
     def _on_ok_clicked(self):
-        self.ui.producerLabel.setText(self.addSpool.producer)
-        self.ui.colorLabel.setText(self.addSpool.color)
-        self.ui.lenghtLabel.setText(self.addSpool.lenght)
-        self.addSpool.close()
+        if self.addSpool.getSpoolProducer() is not None:
+            self.ui.producerLabel.setText(self.addSpool.producer)
+        if self.addSpool.getSpoolcolor() is not None:
+            self.ui.colorLabel.setText(self.addSpool.color)
+        try:
+            length = self.addSpool.getSpoolLength()
+        except Exception as error:
+            dialog = QMessageBox()
+            dialog.setWindowTitle("Błąd")
+            dialog.setIcon(QMessageBox.Icon.Critical)
+            dialog.setText("Podaj długość szpuli jako liczba")
+            self.addSpool.show()
+            dialog.exec()
+        
+        if length is not None:
+            self.ui.lenghtLabel.setText(self.addSpool.lenght)
+            self.spoolLengthChange.emit(self.index, length)  
     @Slot()
     def _on_cancel_clicked(self):
         self.addSpool.close()
@@ -53,5 +66,4 @@ class SpoolWidget(QWidget):
     @Slot()
     def _openDialogAddSpool(self):
         self.addSpool.show()
-
 

@@ -29,7 +29,9 @@ class MainWindow(QMainWindow):
         # Connect signals
         self._model.spoolChanged.connect(self.onSpoolChanged)
         self.spoolWidget1.szpulRequest.connect(self._client.sendSetTargetSpool)
+        self.spoolWidget1.spoolLengthChange.connect(self._client.sendSetSpoolParams)
         self.spoolWidget2.szpulRequest.connect(self._client.sendSetTargetSpool)
+        self.spoolWidget2.spoolLengthChange.connect(self._client.sendSetSpoolParams)
         self._client.connected.connect(self.dialogConnect.onConnect)
         self._client.disconnected.connect(self.dialogConnect.onDisconnect)
         self._client.disconnected.connect(self.onDisconnect)
