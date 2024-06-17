@@ -95,6 +95,11 @@ class FilamuxClient(QObject):
         else:
             LOG.critical("Frame queue exceeded. Dropping frame")
 
+    @Slot(int, int)
+    def sendExtruderFeed(self, speed: int, distance: int):
+        frame = ExtruderFeedReq(speed=speed, distance=distance)
+        self._sendData(MessageType.MSG_EXTRUDER_FEED, frame.SerializeToString())
+
     @Slot(str)
     def sendExtruderGcode(self, gcode: str):
         frame = ExtruderGCodeReq(gcode=gcode)
