@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10get_status.proto\x12\x07\x66ilamux\"\x0e\n\x0cGetStatusReq\"\x9c\x02\n\x0cGetStatusRes\x12,\n\x06status\x18\x01 \x02(\x0e\x32\x1c.filamux.GetStatusRes.Status\x12<\n\x0estatusExchange\x18\x02 \x01(\x0e\x32$.filamux.GetStatusRes.StatusExchange\x12\x14\n\x0c\x63urrentSpool\x18\x03 \x02(\x05\"M\n\x06Status\x12\x06\n\x02OK\x10\x01\x12\x15\n\x11\x46ILAMENT_EXCHANGE\x10\x02\x12\t\n\x05\x45RROR\x10\x64\x12\x19\n\x15\x45RROR_FILAMENT_RUNOUT\x10\x65\";\n\x0eStatusExchange\x12\x0e\n\nRETRACTING\x10\x01\x12\x0c\n\x08\x43HANGING\x10\x02\x12\x0b\n\x07\x46\x45\x45\x44ING\x10\x03')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10get_status.proto\x12\x07\x66ilamux\"\x0e\n\x0cGetStatusReq\"\xb2\x02\n\x0cGetStatusRes\x12,\n\x06status\x18\x01 \x02(\x0e\x32\x1c.filamux.GetStatusRes.Status\x12<\n\x0estatusExchange\x18\x02 \x01(\x0e\x32$.filamux.GetStatusRes.StatusExchange\x12\x14\n\x0c\x63urrentSpool\x18\x03 \x02(\x05\"c\n\x06Status\x12\x06\n\x02OK\x10\x01\x12\x15\n\x11\x46ILAMENT_EXCHANGE\x10\x03\x12\x14\n\x10\x46ILAMENT_FEEDING\x10\x02\x12\t\n\x05\x45RROR\x10\x64\x12\x19\n\x15\x45RROR_FILAMENT_RUNOUT\x10\x65\";\n\x0eStatusExchange\x12\x0e\n\nRETRACTING\x10\x01\x12\x0c\n\x08\x43HANGING\x10\x02\x12\x0b\n\x07\x46\x45\x45\x44ING\x10\x03')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'get_status_pb2', globals())
@@ -23,9 +23,9 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _GETSTATUSREQ._serialized_start=29
   _GETSTATUSREQ._serialized_end=43
   _GETSTATUSRES._serialized_start=46
-  _GETSTATUSRES._serialized_end=330
+  _GETSTATUSRES._serialized_end=352
   _GETSTATUSRES_STATUS._serialized_start=192
-  _GETSTATUSRES_STATUS._serialized_end=269
-  _GETSTATUSRES_STATUSEXCHANGE._serialized_start=271
-  _GETSTATUSRES_STATUSEXCHANGE._serialized_end=330
+  _GETSTATUSRES_STATUS._serialized_end=291
+  _GETSTATUSRES_STATUSEXCHANGE._serialized_start=293
+  _GETSTATUSRES_STATUSEXCHANGE._serialized_end=352
 # @@protoc_insertion_point(module_scope)
