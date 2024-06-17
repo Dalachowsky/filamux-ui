@@ -39,6 +39,8 @@ class MainWindow(QMainWindow):
         self._client.connected.connect(self.dialogConnect.onConnect)
         self._client.disconnected.connect(self.dialogConnect.onDisconnect)
         self._client.disconnected.connect(self.onDisconnect)
+        self._client.statusChanged.connect(self.statusWidget.onStatusChanged)
+        self._client.currentSpoolChanged.connect(self.statusWidget.onCurrentSpoolChanged)
 
         self._model.currentSpool = 0
         self._model.currentSpool = 1
