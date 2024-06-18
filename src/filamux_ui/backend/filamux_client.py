@@ -1,6 +1,6 @@
 
 from PySide6.QtSerialPort import QSerialPort
-from PySide6.QtCore import QObject, QIODevice, Slot, Signal
+from PySide6.QtCore import QObject, QIODevice, Slot, Signal, QTimer
 from .protobuf import *
 from typing import *
 from crc import Calculator, Crc16
@@ -32,6 +32,9 @@ class FilamuxClient(QObject):
     connected = Signal()
     disconnected = Signal(str)
 
+    currentSpoolChanged = Signal(int)
+    statusChanged = Signal(str)
+
     def __init__(self):
         super().__init__()
         self._connected = False
@@ -46,7 +49,13 @@ class FilamuxClient(QObject):
         self._rxBuffer = []
         self._bytesRemaining = 0
 
+        self._timer = QTimer()
+        self._timer.setInterval(500)
+        self._timer.timeout.connect(self._sendPeriodicRequests)
         self._frameQueue = []
+
+        self._prevStatus = ""
+        self._prevCurrentSpool = -1
 
     def isConnected(self):
         return self._port.isOpen()
@@ -61,6 +70,7 @@ class FilamuxClient(QObject):
         self._port.open(QIODevice.ReadWrite)
         if self.isConnected():
             LOG.info("Connected")
+            self._timer.start()
             self.connected.emit()
         else:
             msg = f"Nie połączono: {self._port.errorString()}"
@@ -71,7 +81,11 @@ class FilamuxClient(QObject):
         pass
 
     def stop(self):
+        self._timer.stop()
         self._port.close()
+
+    def _sendPeriodicRequests(self):
+        self.sendGetStatus()
 
     def _sendData(self, messageType: MessageType, data: bytearray):
         frame = bytearray()
@@ -95,10 +109,20 @@ class FilamuxClient(QObject):
         else:
             LOG.critical("Frame queue exceeded. Dropping frame")
 
+    @Slot(int, int)
+    def sendExtruderFeed(self, speed: int, distance: int):
+        frame = ExtruderFeedReq(speed=speed, distance=distance)
+        self._sendData(MessageType.MSG_EXTRUDER_FEED, frame.SerializeToString())
+
     @Slot(str)
     def sendExtruderGcode(self, gcode: str):
         frame = ExtruderGCodeReq(gcode=gcode)
         self._sendData(MessageType.MSG_EXTRUDER_GCODE, frame.SerializeToString())
+
+    @Slot()
+    def sendGetStatus(self):
+        frame = GetStatusReq()
+        self._sendData(MessageType.MSG_GET_STATUS, frame.SerializeToString())
 
     @Slot(int)
     def sendSetSpoolParams(self, index: int, length: int):
@@ -132,6 +156,20 @@ class FilamuxClient(QObject):
         else:
             LOG.error(f"Set spool params error. {res.reason if res.reason is not None else ''}")
 
+    def _handleGetStatus(self, payload: bytes):
+        res = GetStatusRes.FromString(payload)
+        if not res.IsInitialized():
+            LOG.error(f"Cannot parse GetStatusRes: {payload}")
+            return
+        
+        statusString = GetStatusRes.Status.Name(res.status)
+        if statusString != self._prevStatus:
+            self._prevStatus = statusString
+            self.statusChanged.emit(statusString)
+        if res.currentSpool != self._prevCurrentSpool:
+            self._prevCurrentSpool = res.currentSpool
+            self.currentSpoolChanged.emit(res.currentSpool)
+
     def _getPayload(self, buffer: List[int]) -> bytes:
         length = buffer[LENGTH_FIELD_POS]
         payload = buffer[DATA_FIELD_POS:DATA_FIELD_POS+length]
@@ -155,6 +193,8 @@ class FilamuxClient(QObject):
         LOG.info(f"Frame type: {frameType}")
         if frameType == "MSG_SET_TARGET_SPOOL":
             self._handleSetTargetSpoolRes(self._getPayload(self._rxBuffer))
+        elif frameType == "MSG_GET_STATUS":
+            self._handleGetStatus(self._getPayload(self._rxBuffer))
         self._transactionOngoing = False
         self._rxBuffer = []
 

@@ -12,6 +12,10 @@ class StatusWidget(QWidget):
         self.ui = Ui_StatusWidget()
         self.ui.setupUi(self)
 
-    @Slot(GetStatusRes)
-    def onStatusReceived(self, msg: GetStatusRes):
-        pass
+    @Slot(str)
+    def onStatusChanged(self, status: str):
+        self.ui.status.setText(status)
+
+    @Slot(int)
+    def onCurrentSpoolChanged(self, spool: int):
+        self.ui.currentSpool.setText(f"{spool}")

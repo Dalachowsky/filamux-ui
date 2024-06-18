@@ -73,7 +73,7 @@ class Ui_DialogConnect(object):
         self.paramsBox.setTitle(QCoreApplication.translate("DialogConnect", u"Parametry", None))
         self.baudrateLabel.setText(QCoreApplication.translate("DialogConnect", u"Baudrate", None))
         self.portLabel.setText(QCoreApplication.translate("DialogConnect", u"Port", None))
-        self.portValue.setText(QCoreApplication.translate("DialogConnect", u"COM3", None))
+        self.portValue.setText(QCoreApplication.translate("DialogConnect", u"/dev/ttyUSB0", None))
         self.connectButton.setText(QCoreApplication.translate("DialogConnect", u"Po\u0142\u0105cz", None))
     # retranslateUi
 

@@ -3,6 +3,7 @@ from google.protobuf import descriptor as _descriptor
 from typing import ClassVar as _ClassVar
 
 DESCRIPTOR: _descriptor.FileDescriptor
+MSG_EXTRUDER_FEED: MessageType
 MSG_EXTRUDER_GCODE: MessageType
 MSG_GET_SPOOL_PARAMS: MessageType
 MSG_GET_STATUS: MessageType

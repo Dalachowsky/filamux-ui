@@ -21,6 +21,7 @@ class GetStatusRes(_message.Message):
     ERROR_FILAMENT_RUNOUT: GetStatusRes.Status
     FEEDING: GetStatusRes.StatusExchange
     FILAMENT_EXCHANGE: GetStatusRes.Status
+    FILAMENT_FEEDING: GetStatusRes.Status
     OK: GetStatusRes.Status
     RETRACTING: GetStatusRes.StatusExchange
     STATUSEXCHANGE_FIELD_NUMBER: _ClassVar[int]

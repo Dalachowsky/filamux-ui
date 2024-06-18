@@ -35,9 +35,12 @@ class MainWindow(QMainWindow):
         self.spoolWidget1.spoolLengthChange.connect(self._client.sendSetSpoolParams)
         self.spoolWidget2.szpulRequest.connect(self._client.sendSetTargetSpool)
         self.spoolWidget2.spoolLengthChange.connect(self._client.sendSetSpoolParams)
+        self.extruderWidget.sendExtruderFeedRequested.connect(self._client.sendExtruderFeed)
         self._client.connected.connect(self.dialogConnect.onConnect)
         self._client.disconnected.connect(self.dialogConnect.onDisconnect)
         self._client.disconnected.connect(self.onDisconnect)
+        self._client.statusChanged.connect(self.statusWidget.onStatusChanged)
+        self._client.currentSpoolChanged.connect(self.statusWidget.onCurrentSpoolChanged)
 
         self._model.currentSpool = 0
         self._model.currentSpool = 1
