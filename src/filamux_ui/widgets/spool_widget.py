@@ -22,9 +22,6 @@ class SpoolWidget(QWidget):
 
         self.ui.label.setText("Załadowana szpula:")
         self.ui.addSpoolButton.setText(f"Dodaj informacje o szpuli {index}")
-        self.ui.producerLabel.setText("Producent szpuli:     ")
-        self.ui.colorLabel.setText("Color szpuli:     ")
-        self.ui.lenghtLabel.setText("Długość szpuli:     ")
 
         ############# Filament changing #############
         self.ui.changeButton.clicked.connect(self._onChangeButtonClick)
@@ -36,12 +33,27 @@ class SpoolWidget(QWidget):
         self.addSpool.Ok.connect(self._on_ok_clicked)
         self.addSpool.Cancel.connect(self._on_cancel_clicked)
 
+        self.ui.resetProducer.clicked.connect(self._on_reset_producer_dialog)
+        self.ui.resetColor.clicked.connect(self._on_reset_color_dialog)
+        self.ui.resetlenght.clicked.connect(self._on_reset_length_dialog)
+
+    @Slot()
+    def _on_reset_producer_dialog(self):
+        self.ui.producerLabel.clear()
+
+    def _on_reset_color_dialog(self):
+        self.ui.colorLabel.clear()
+
+    def _on_reset_length_dialog(self):
+        self.ui.lenghtLabel.clear()
+        self.spoolLengthChange.emit(self.index, 0) 
+
     @Slot()
     def _on_ok_clicked(self):
         if self.addSpool.getSpoolProducer() is not None:
             self.ui.producerLabel.setText(self.addSpool.producer)
         if self.addSpool.getSpoolcolor() is not None:
-            self.ui.colorLabel.setText(self.addSpool.color)
+            self.ui.colorLabel.setText(self.addSpool.color)    
         try:
             length = self.addSpool.getSpoolLength()
         except Exception as error:
@@ -49,9 +61,9 @@ class SpoolWidget(QWidget):
             dialog.setWindowTitle("Błąd")
             dialog.setIcon(QMessageBox.Icon.Critical)
             dialog.setText("Podaj długość szpuli jako liczba")
-            self.addSpool.show()
-            dialog.exec()
-        
+            self.addSpool.showAndClear()
+            dialog.show()        
+
         if length is not None:
             self.ui.lenghtLabel.setText(self.addSpool.lenght)
             self.spoolLengthChange.emit(self.index, length)  
@@ -65,5 +77,5 @@ class SpoolWidget(QWidget):
 
     @Slot()
     def _openDialogAddSpool(self):
-        self.addSpool.show()
+        self.addSpool.showAndClear()
 
