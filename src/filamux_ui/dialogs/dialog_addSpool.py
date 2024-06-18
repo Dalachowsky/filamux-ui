@@ -13,22 +13,21 @@ class addSpool(QDialog):
         self.Ok = self.ui.buttonBox.accepted
         self.Cancel = self.ui.buttonBox.rejected
         # self.Reset = self.ui.buttonBox.buttonRole.
-
+        
         self.ui.producerOfSpool.textChanged.connect(self._producerText)
         self.ui.colorOfSpool.textChanged.connect(self._colorText)
         self.ui.lenghtOfSpool.textChanged.connect(self._lenghtText)
 
-    def show(self):
+ 
+    def showAndClear(self):
         super().show()
         self.ui.producerOfSpool.clear()
         self.ui.colorOfSpool.clear()
         self.ui.lenghtOfSpool.clear()
 
-
-
     def getSpoolLength(self):
         if self.ui.lenghtOfSpool.text() == "":
-            return None
+            return 1
         try:
             return int(self.ui.lenghtOfSpool.text())
         except Exception as error:
@@ -46,16 +45,13 @@ class addSpool(QDialog):
         return self.ui.colorOfSpool.text()
 
     def _producerText(self, text):
-        text = text
-        self.producer = f"Producent szpuli:     {text.capitalize()}"
+        self.producer = text.capitalize()
 
     def _colorText(self, text):
-        text = text
-        self.color = f"Kolor szpuli:     {text.capitalize()}"
+        self.color = text.capitalize()
 
     def _lenghtText(self, text):
-        text = text
-        self.lenght = f"Długość szpuli:     {text}m"
+        self.lenght = text
 
 
 
